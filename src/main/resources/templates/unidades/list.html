@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+	<div class="alert alert-danger" th:if="${#lists.isEmpty(list)}">
+		Nenhuma Unidade de Medida cadastrada</div>
+	<div class="alert alert-primary" th:if="${message != null}"
+		th:text="${message}"></div>
+	<div th:if="${not #lists.isEmpty(list)}">
+		<div class="card mb-3">
+			<div class="card-header">
+				<p class="text-primary">Filtrar Unidade</p>
+			</div>
+			<div class="card-body">
+				<form method="GET">
+					<div class="form-group mb-3">
+						<label for="nome">Nome:</label> <input class="form-control"
+							type="text" name="nome"></input>
+					</div>
+					<button type="submit" class="btn btn-primary">Filtrar</button>
+				</form>
+			</div>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nome</th>
+					<th>Opções</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="unidadeMedida : ${list}">
+					<td th:text="${unidadeMedida.id}"></td>
+					<td th:text="${unidadeMedida.nome}" width="80%"></td>
+					<td><a class="btn btn-primary btn-sm"
+						th:href="@{/unidades/edit(id=${unidadeMedida.id})}">Editar</a> <a
+						class="btn btn-danger btn-sm"
+						th:href="@{/unidades/delete(id=${unidadeMedida.id})}"
+						onclick="return confirm('Você realmente deseja excluir essa unidade?')">Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+</html>
