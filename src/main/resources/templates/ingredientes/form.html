@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<div layout:fragment="content">
+	<div class="alert alert-primary" th:if="${message != null}"
+		th:text="${message}"></div>
+	<div class="card">
+		<div class="card-header">
+			<p class="text-primary">Novo Ingrediente</p>
+		</div>
+		<div class="card-body">
+			<form method="POST" th:object="${ingrediente}"
+				th:action="@{/ingredientes/edit}">
+				<input type="hidden" th:field="*{id}">
+				<div class="form-group mb-3">
+					<label for="nome">Nome do ingrediente:</label> <input
+						class="form-control" type="text" th:field="*{nome}" required></input>
+					<div class="text-danger" th:if="${#fields.hasErrors('nome')}"
+						th:errors="*{nome}"></div>
+				</div>
+				<div class="form-group mb-3">
+					<p>Unidades de Medidas:</p>
+					<div th:each="unidadeMedida: ${listaUnidadeMedida}">
+						<input type="checkbox" th:id="${unidadeMedida}"
+							th:value="${unidadeMedida.id}" th:field="*{unidadesMedidas}"
+							required="required" /> <label th:text="${unidadeMedida.nome}"></label>
+					</div>
+					<div class="text-danger"
+						th:if="${#fields.hasErrors('unidadesMedidas')}"
+						th:errors="*{unidadesMedidas}"></div>
+				</div>
+				<button type="submit" class="btn btn-primary" id="salvar">Salvar
+					Ingrediente</button>
+			</form>
+		</div>
+	</div>
+</div>
+<script>
+$(function(){
+$('#salvar').click(function(){
+if($'input[type-checkbox]:checked').length<0){
+alert("Selecione pelo menos uma unidade de medida")}
+)}
+)}
+</script>
+</html>

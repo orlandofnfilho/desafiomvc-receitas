@@ -75,6 +75,7 @@ public class UnidadeMedidaController {
 	public ModelAndView list(String nome) {
 		ModelAndView mv = new ModelAndView("unidades/list");
 		mv.addObject("list", unidadeMedidaService.findAll(nome));
+		mv.addObject("nome", nome);
 		return mv;
 
 	}

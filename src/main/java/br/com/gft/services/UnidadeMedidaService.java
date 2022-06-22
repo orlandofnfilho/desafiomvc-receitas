@@ -34,10 +34,6 @@ public class UnidadeMedidaService {
 		
 		return unidadeMedidaRepository.findAll();
 	}
-	
-	private List<UnidadeMedida> listAll() {
-		return unidadeMedidaRepository.findAll();
-	}
 
 	private List<UnidadeMedida> listByName(String nome) {
 		return unidadeMedidaRepository.findByNomeContainingIgnoreCase(nome);

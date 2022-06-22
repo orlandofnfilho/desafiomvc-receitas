@@ -5,13 +5,13 @@
 <meta charset="UTF-8">
 <div layout:fragment="content">
 	<div class="alert alert-primary" th:if="${#lists.isEmpty(list)}">
-		Nenhuma unidade encontrada.</div>
+		Nenhum ingrediente encontrado.</div>
 	<div class="alert alert-primary" th:if="${message != null}"
 		th:text="${message}"></div>
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="card mb-3">
 			<div class="card-header">
-				<p class="text-primary">Filtrar Unidade de Medidas</p>
+				<p class="text-primary">Filtrar Ingredientes</p>
 			</div>
 			<div class="card-body">
 				<form method="GET">
@@ -32,14 +32,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="unidadeMedida : ${list}">
-					<td th:text="${unidadeMedida.id}"></td>
-					<td th:text="${unidadeMedida.nome}" width="80%"></td>
+				<tr th:each="ingrediente : ${list}">
+					<td th:text="${ingrediente.id}"></td>
+					<td th:text="${ingrediente.nome}" width="80%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/unidades/edit(id=${unidadeMedida.id})}">Editar</a> <a
+						th:href="@{/ingredientes/edit(id=${ingrediente.id})}">Editar</a> <a
 						class="btn btn-danger btn-sm"
-						th:href="@{/unidades/delete(id=${unidadeMedida.id})}"
-						onclick="return confirm('Você realmente deseja excluir essa unidade?')">Excluir</a>
+						th:href="@{/ingredientes/delete(id=${ingrediente.id})}"
+						onclick="return confirm('Você realmente deseja excluir esse ingrediente?')">Excluir</a>
 					</td>
 				</tr>
 			</tbody>
