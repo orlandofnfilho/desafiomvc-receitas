@@ -95,7 +95,7 @@ public class IngredienteController {
 			ingredienteService.delete(id);
 			redirectAttributes.addFlashAttribute("message", "Ingrediente excluido com sucesso!");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", "Erro ao excluir ingrediente!" + e.getMessage());
+			redirectAttributes.addFlashAttribute("message", "Erro ao excluir ingrediente.");
 		}
 
 		return mv;

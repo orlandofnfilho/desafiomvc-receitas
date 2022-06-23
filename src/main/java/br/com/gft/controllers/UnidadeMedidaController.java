@@ -89,7 +89,7 @@ public class UnidadeMedidaController {
 			unidadeMedidaService.delete(id);
 			redirectAttributes.addFlashAttribute("message", "Unidade de medida excluida com sucesso!");
 		} catch (Exception e) {
-			redirectAttributes.addFlashAttribute("message", "Erro ao excluir Unidade de medida " + e.getMessage());
+			redirectAttributes.addFlashAttribute("message", "Erro ao excluir Unidade de medida.");
 		}
 
 		return mv;

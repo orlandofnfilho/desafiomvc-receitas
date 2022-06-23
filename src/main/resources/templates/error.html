@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout.html}">
+<meta charset="UTF-8">
+<title th:text="${status}"></title>
+<div layout:fragment="content">
+	<h1 class="h3 mb-3 font-weight-normal">
+		<i class="oi oi-warning"></i> <span th:text="${status}"></span>
+	</h1>
+
+	<h2 th:text="${error}"></h2>
+
+	<div>
+		<span th:text="${message}"></span><br /> <br /> <a
+			class="btn btn-primary" type="button"
+			href="javascript:history.back()">Voltar a página anterior</a>
+	</div>
+</div>
+</html>
