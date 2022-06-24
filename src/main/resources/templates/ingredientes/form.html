@@ -24,8 +24,7 @@
 					<p>Unidades de Medidas:</p>
 					<div th:each="unidadeMedida: ${listaUnidadeMedida}">
 						<input type="checkbox" th:id="${unidadeMedida}"
-							th:value="${unidadeMedida.id}" th:field="*{unidadesMedidas}"
-							required="required" /> <label th:text="${unidadeMedida.nome}"></label>
+							th:value="${unidadeMedida.id}" th:field="*{unidadesMedidas}"/> <label th:text="${unidadeMedida.nome}"></label>
 					</div>
 					<div class="text-danger"
 						th:if="${#fields.hasErrors('unidadesMedidas')}"

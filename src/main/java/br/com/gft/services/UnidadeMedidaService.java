@@ -29,9 +29,9 @@ public class UnidadeMedidaService {
 	}
 
 	public List<UnidadeMedida> findAll(String nome) {
-		if(nome != null)
+		if (nome != null)
 			return listByName(nome);
-		
+
 		return unidadeMedidaRepository.findAll();
 	}
 
@@ -41,6 +41,10 @@ public class UnidadeMedidaService {
 
 	public void delete(Long id) {
 		unidadeMedidaRepository.deleteById(id);
+	}
+
+	public void saveAll(List<UnidadeMedida> list) {
+		unidadeMedidaRepository.saveAll(list);
 	}
 
 }

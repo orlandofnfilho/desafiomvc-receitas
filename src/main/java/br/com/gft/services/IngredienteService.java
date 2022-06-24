@@ -22,7 +22,7 @@ public class IngredienteService {
 	public Ingrediente findById(Long id) throws Exception {
 		Optional<Ingrediente> ingrediente = ingredienteRepository.findById(id);
 		if (ingrediente.isEmpty()) {
-			throw new Exception("Unidade de medida não econtrada.");
+			throw new Exception("Ingrediente não encontrado.");
 		}
 		return ingrediente.get();
 
@@ -42,4 +42,9 @@ public class IngredienteService {
 	public void delete(Long id) {
 		ingredienteRepository.deleteById(id);
 	}
+
+	public void saveAll(List<Ingrediente> list) {
+		ingredienteRepository.saveAll(list);
+	}
+
 }
