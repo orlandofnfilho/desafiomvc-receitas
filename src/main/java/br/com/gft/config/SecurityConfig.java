@@ -20,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/receitas/edit").hasAnyRole("admin")
 				.anyRequest().authenticated()
 				.and().formLogin().loginPage("/login").defaultSuccessUrl("/index", true)
-				.failureUrl("/login-error").permitAll()
-				.and().logout().logoutSuccessUrl("/logout");
+				.failureUrl("/login-error").permitAll()	
+				.and().logout().logoutSuccessUrl("/login?logout");
 	}
 }
