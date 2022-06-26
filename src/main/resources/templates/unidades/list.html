@@ -26,15 +26,15 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>Id</th>
+					<th>#</th>
 					<th>Nome</th>
 					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="unidadeMedida : ${list}">
-					<td th:text="${unidadeMedida.id}"></td>
-					<td th:text="${unidadeMedida.nome}" width="80%"></td>
+					<td th:text="${unidadeMedida.id}" width="20%"></td>
+					<td th:text="${unidadeMedida.nome}" width="60%"></td>
 					<td><a class="btn btn-primary btn-sm"
 						th:href="@{/unidades/edit(id=${unidadeMedida.id})}">Editar</a> <a
 						class="btn btn-danger btn-sm"

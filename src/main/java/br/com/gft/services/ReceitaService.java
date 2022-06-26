@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gft.entites.Receita;
-import br.com.gft.entites.UnidadeMedida;
 import br.com.gft.repositories.ReceitaRepository;
 
 @Service
@@ -43,7 +42,7 @@ public class ReceitaService {
 	public void delete(Long id) {
 		receitaRepository.deleteById(id);
 	}
-	
+
 	public void saveAll(List<Receita> list) {
 		receitaRepository.saveAll(list);
 	}

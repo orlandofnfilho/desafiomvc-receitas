@@ -1,15 +1,13 @@
 package br.com.gft.entites;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,8 +28,7 @@ public class Ingrediente implements Serializable {
 	@NotBlank(message = "Insira o nome.")
 	private String nome;
 
-	@ManyToMany
-	@NotEmpty(message = "Selecione pelo menos uma unidade de medida")
-	private List<UnidadeMedida> unidadesMedidas;
+	@ManyToOne
+	private UnidadeMedida unidadeMedida;
 
 }

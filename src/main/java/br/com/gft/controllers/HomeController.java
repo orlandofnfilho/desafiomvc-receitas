@@ -13,7 +13,7 @@ public class HomeController {
 	@GetMapping
 	public ModelAndView index() {
 
-		ModelAndView mv = new ModelAndView("index");
+		ModelAndView mv = new ModelAndView("/index");
 		return mv;
 	}
 }

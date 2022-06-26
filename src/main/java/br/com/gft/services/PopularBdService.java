@@ -2,7 +2,6 @@ package br.com.gft.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +17,6 @@ public class PopularBdService {
 
 	@Autowired
 	private IngredienteService IngredienteService;
-
-	@Autowired
-	private ReceitaService receitaService;
 
 	private boolean Bdpopulado;
 
@@ -39,6 +35,13 @@ public class PopularBdService {
 			unidadeMedidaService.saveAll(listaUnidadeMedidas);
 
 			List<Ingrediente> listaIngredientes = new ArrayList<>();
+
+			listaIngredientes.add(new Ingrediente(null, "Acúcar", listaUnidadeMedidas.get(0)));
+			listaIngredientes.add(new Ingrediente(null, "Leite", listaUnidadeMedidas.get(3)));
+			listaIngredientes.add(new Ingrediente(null, "Azeite", listaUnidadeMedidas.get(1)));
+			listaIngredientes.add(new Ingrediente(null, "Água", listaUnidadeMedidas.get(0)));
+			
+			IngredienteService.saveAll(listaIngredientes);
 
 			Bdpopulado = true;
 
