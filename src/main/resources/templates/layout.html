@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta charset="UTF-8">
 <title>Receitas GFT</title>
@@ -34,9 +35,10 @@
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" th:href="@{/receitas}">Listar</a></li>
-								<li><a class="dropdown-item" th:href="@{/receitas/edit}">Cadastrar</a></li>
+								<li sec:authorize="hasRole('ADMIN')"><a
+									class="dropdown-item" th:href="@{/receitas/edit}">Cadastrar</a></li>
 							</ul></li>
-						<li class="nav-item dropdown"><a
+						<li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> Ingredientes
@@ -47,7 +49,7 @@
 								<li><a class="dropdown-item"
 									th:href="@{/ingredientes/edit}">Cadastrar</a></li>
 							</ul></li>
-						<li class="nav-item dropdown"><a
+						<li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
 							data-bs-toggle="dropdown" aria-expanded="false"> Unidade de
@@ -60,6 +62,16 @@
 					</ul>
 				</div>
 			</div>
+			<form th:action="@{/logout}" method="post"
+				class="navbar-form navbar-right mr-5">
+				<button type="submit" class="btn btn-danger btn-sm"
+					style="margin-right: 10px">
+					<span class="glyphicon glyphicon-log-out"></span>Sair
+				</button>
+
+				<input type="hidden" th:name="${_csrf.parameterName}"
+					th:value="${_csrf.token}" />
+			</form>
 		</nav>
 	</div>
 	<div id="conteudo" class="container" layout:fragment="content"></div>

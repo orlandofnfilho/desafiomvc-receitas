@@ -18,6 +18,10 @@ public class MyErrorView implements ErrorViewResolver {
 		ModelAndView model = new ModelAndView("error");
 		model.addObject("status", status.value());
 		switch (status.value()) {
+		case 403:
+			model.addObject("error", "Sem permissão");
+			model.addObject("message", "Você não tem permissão para acessar essa seção '" + map.get("path"));
+			break;
 		case 404:
 			model.addObject("error", "Página não encontrada.");
 			model.addObject("message", "A url para a página '" + map.get("path") + "' não existe.");
