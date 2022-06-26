@@ -8,7 +8,9 @@
 		th:text="${success}"></div>
 	<div class="alert alert-danger" th:if="${fail != null}"
 		th:text="${fail}"></div>
-	Bem vindo ao ínicio <a class="btn btn-primary btn-sm"
-		th:href="@{/popular}">Popular Banco</a>
+		<a class="btn btn-primary btn-sm"
+		th:href="@{/popular}" sec:authorize="hasRole('ADMIN')">Popular
+		Banco</a>
+	Bem vindo ao ínicio 
 </div>
 </html>
