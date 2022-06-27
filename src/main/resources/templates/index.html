@@ -8,9 +8,15 @@
 		th:text="${success}"></div>
 	<div class="alert alert-danger" th:if="${fail != null}"
 		th:text="${fail}"></div>
-		<a class="btn btn-primary btn-sm"
-		th:href="@{/popular}" sec:authorize="hasRole('ADMIN')">Popular
-		Banco</a>
-	Bem vindo ao ínicio 
+
+	<div class="container">
+		<h1>Bem vindo ao Receitas GFT</h1>
+		<p>Esse é um projeto realizado durante o treinamento GFT Starter #4</p>
+		<p>Aqui você encontrará receitas, seus ingredientes, unidades de medidas e o passo de como fazê-las.</p>
+		<p>Espero que aproveite :)</p>
+		<a class="btn btn-primary btn-sm" th:href="@{/receitas}">Ir para listagem</a>
+			<a class="btn btn-primary btn-sm" th:href="@{/popular}"
+			sec:authorize="hasRole('ADMIN')">Popular Banco</a>
+	</div>
 </div>
 </html>

@@ -28,17 +28,20 @@
 				<tr>
 					<th>Id</th>
 					<th>Nome</th>
+					<th>Tempo de Preparo</th>
 					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="ingrediente : ${list}">
-					<td th:text="${ingrediente.id}"></td>
-					<td th:text="${ingrediente.nome}" width="80%"></td>
+				<tr th:each="receita : ${list}">
+					<td th:text="${receita.id}" width="10%"></td>
+					<td th:text="${receita.tempoPreparo}" width="20%"></td>
+					<td th:text="${receita.nome}" width="60%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/ingredientes/edit(id=${ingrediente.id})}">Editar</a> <a
+						th:href="@{/receitas/edit(id=${receita.id})}">Ver</a><a class="btn btn-primary btn-sm"
+						th:href="@{/receitas/edit(id=${receita.id})}">Editar</a> <a
 						class="btn btn-danger btn-sm"
-						th:href="@{/ingredientes/delete(id=${ingrediente.id})}"
+						th:href="@{/receitas/delete(id=${receita.id})}"
 						onclick="return confirm('Você realmente deseja excluir essa receita?')">Excluir</a>
 					</td>
 				</tr>
