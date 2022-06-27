@@ -1,7 +1,5 @@
 package br.com.gft.controllers;
 
-import java.util.Iterator;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +12,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.gft.entites.Ingrediente;
-import br.com.gft.entites.UnidadeMedida;
+import br.com.gft.entites.Item;
 import br.com.gft.services.IngredienteService;
+import br.com.gft.services.ItemService;
+import br.com.gft.services.ReceitaService;
 import br.com.gft.services.UnidadeMedidaService;
 
 @Controller
-@RequestMapping("/ingredientes")
-public class IngredienteController {
+@RequestMapping("/itens")
+public class ItemController {
+
+	@Autowired
+	private ItemService itemService;
+
+	@Autowired
+	private ReceitaService receitaService;
 
 	@Autowired
 	private IngredienteService ingredienteService;
@@ -31,50 +36,50 @@ public class IngredienteController {
 
 	@GetMapping("/edit")
 	public ModelAndView edit(@RequestParam(required = false) Long id) {
-		ModelAndView mv = new ModelAndView("ingredientes/form");
+		ModelAndView mv = new ModelAndView("itens/form");
 
-		Ingrediente ingrediente;
+		Item item;
 
 		if (id == null) {
-			ingrediente = new Ingrediente();
+			item = new Item();
 		} else {
 			try {
-				ingrediente = ingredienteService.findById(id);
+				item = itemService.findById(id);
 			} catch (Exception e) {
-				ingrediente = new Ingrediente();
+				item = new Item();
 				mv.addObject("message", e.getMessage());
 			}
 		}
 
-		mv.addObject("ingrediente", ingrediente);
+		mv.addObject("item", item);
 		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 
 		return mv;
 	}
 
 	@PostMapping("/edit")
-	public ModelAndView edit(@Valid Ingrediente ingrediente, BindingResult bindingResult) {
-		ModelAndView mv = new ModelAndView("ingredientes/form");
-		boolean newIngrediente = true;
+	public ModelAndView edit(@Valid Item item, BindingResult bindingResult) {
+		ModelAndView mv = new ModelAndView("itens/form");
+		boolean newItem = true;
 
-		if (ingrediente.getId() != null) {
-			newIngrediente = false;
+		if (item.getId() != null) {
+			newItem = false;
 		}
 
 		if (bindingResult.hasErrors()) {
-			mv.addObject("ingrediente", ingrediente);
+			mv.addObject("ingrediente", item);
 			return mv;
 		}
 
-		Ingrediente ingredienteSaved = ingredienteService.insert(ingrediente);
-		
-		if (newIngrediente) {
-			mv.addObject("ingrediente", new Ingrediente());
+		Item itemSaved = itemService.insert(item);
+
+		if (newItem) {
+			mv.addObject("item", new Item());
 		} else {
-			mv.addObject("ingrediente", ingredienteSaved);
+			mv.addObject("item", itemSaved);
 		}
 
-		mv.addObject("message", "Ingrediente salvo com sucesso!");
+		mv.addObject("message", "Item salvo com sucesso!");
 		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 		return mv;
 
@@ -82,7 +87,7 @@ public class IngredienteController {
 
 	@GetMapping
 	public ModelAndView list(String nome) {
-		ModelAndView mv = new ModelAndView("ingredientes/list");
+		ModelAndView mv = new ModelAndView("itens/list");
 		mv.addObject("list", ingredienteService.findAll(nome));
 		mv.addObject("nome", nome);
 		return mv;
@@ -92,7 +97,7 @@ public class IngredienteController {
 	@GetMapping("/delete")
 	public ModelAndView delete(@RequestParam Long id, RedirectAttributes redirectAttributes) {
 
-		ModelAndView mv = new ModelAndView("redirect:/ingredientes");
+		ModelAndView mv = new ModelAndView("redirect:/itens");
 
 		try {
 			ingredienteService.delete(id);

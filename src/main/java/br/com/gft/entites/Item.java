@@ -1,7 +1,9 @@
 package br.com.gft.entites;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Item {
+public class Item implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +28,13 @@ public class Item {
 
 	private BigDecimal quantity;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Receita receita;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Ingrediente ingrediente;
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
+	private UnidadeMedida unidadeMedida;
 
 }

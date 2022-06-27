@@ -1,6 +1,7 @@
 package br.com.gft.services;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,17 +31,26 @@ public class PopularBdService {
 			listaUnidadeMedidas.add(new UnidadeMedida(null, "Xícara"));
 			listaUnidadeMedidas.add(new UnidadeMedida(null, "Colher de sopa"));
 			listaUnidadeMedidas.add(new UnidadeMedida(null, "Colher de chá"));
+			listaUnidadeMedidas.add(new UnidadeMedida(null, "Copo"));
+			listaUnidadeMedidas.add(new UnidadeMedida(null, "Gramas"));
 			listaUnidadeMedidas.add(new UnidadeMedida(null, "Litro"));
 
 			unidadeMedidaService.saveAll(listaUnidadeMedidas);
 
 			List<Ingrediente> listaIngredientes = new ArrayList<>();
+			listaIngredientes.add(new Ingrediente(null, "Achocolatado",
+					Arrays.asList(listaUnidadeMedidas.get(0), listaUnidadeMedidas.get(1), listaUnidadeMedidas.get(4))));
+			listaIngredientes.add(new Ingrediente(null, "Açúcar",
+					Arrays.asList(listaUnidadeMedidas.get(1), listaUnidadeMedidas.get(2), listaUnidadeMedidas.get(4))));
+			listaIngredientes.add(new Ingrediente(null, "Leite",
+					Arrays.asList(listaUnidadeMedidas.get(0), listaUnidadeMedidas.get(1))));
+			listaIngredientes.add(new Ingrediente(null, "Água",
+					Arrays.asList(listaUnidadeMedidas.get(0), listaUnidadeMedidas.get(3), listaUnidadeMedidas.get(5))));
+			listaIngredientes.add(new Ingrediente(null, "Farinha de Trigo",
+					Arrays.asList(listaUnidadeMedidas.get(0), listaUnidadeMedidas.get(1), listaUnidadeMedidas.get(4))));
+			listaIngredientes.add(new Ingrediente(null, "Fermento",
+					Arrays.asList(listaUnidadeMedidas.get(0), listaUnidadeMedidas.get(1), listaUnidadeMedidas.get(4))));
 
-			listaIngredientes.add(new Ingrediente(null, "Acúcar", listaUnidadeMedidas.get(0)));
-			listaIngredientes.add(new Ingrediente(null, "Leite", listaUnidadeMedidas.get(3)));
-			listaIngredientes.add(new Ingrediente(null, "Azeite", listaUnidadeMedidas.get(1)));
-			listaIngredientes.add(new Ingrediente(null, "Água", listaUnidadeMedidas.get(0)));
-			
 			IngredienteService.saveAll(listaIngredientes);
 
 			Bdpopulado = true;

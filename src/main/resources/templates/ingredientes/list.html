@@ -28,15 +28,13 @@
 				<tr>
 					<th>#</th>
 					<th>Nome</th>
-					<th>Unidade de Medida</th>
 					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="ingrediente : ${list}">
 					<td th:text="${ingrediente.id}" width="20%"></td>
-					<td th:text="${ingrediente.nome}" width="30%"></td>
-					<td th:text="${ingrediente.unidadeMedida.nome}" width="30%"></td>
+					<td th:text="${ingrediente.nome}" width="60%"></td>
 					<td><a class="btn btn-primary btn-sm"
 						th:href="@{/ingredientes/edit(id=${ingrediente.id})}">Editar</a> <a
 						class="btn btn-danger btn-sm"
