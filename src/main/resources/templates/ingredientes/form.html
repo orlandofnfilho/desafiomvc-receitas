@@ -12,20 +12,13 @@
 		</div>
 		<div class="card-body">
 			<form method="POST" th:object="${ingrediente}"
-				th:action="@{/ingredientes/edit}">
-				<input type="hidden" th:field="*{id}">
+				th:action="@{/ingredientes/new}">
+				<input type="hidden" th:field="*{ingredienteId}">
 				<div class="form-group mb-3">
 					<label for="nome">Nome do ingrediente:</label> <input
 						class="form-control" type="text" th:field="*{nome}" required></input>
 					<div class="text-danger" th:if="${#fields.hasErrors('nome')}"
 						th:errors="*{nome}"></div>
-				</div>
-				<div class="form-group mb-3">
-					<p>Unidades de Medida:</p>
-					<div th:each="unidadeMedida: ${listaUnidadeMedida}">
-						<input type="checkbox" th:id="${unidadeMedida}" th:value="${unidadeMedida.id}" th:field="*{unidadeMedidas}" />
-						<label th:text="${unidadeMedida.nome}"></label>
-					</div>
 				</div>
 				<button type="submit" class="btn btn-primary" id="salvar">Salvar
 					Ingrediente</button>

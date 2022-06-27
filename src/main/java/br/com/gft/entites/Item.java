@@ -3,12 +3,12 @@ package br.com.gft.entites;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.persistence.CascadeType;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,19 +22,22 @@ public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@EmbeddedId
+	private ItemId id = new ItemId();
 
-	private BigDecimal quantity;
+	private BigDecimal quantidade;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
+	@MapsId("receitaId")
+	@JoinColumn(name = "receita_id")
 	private Receita receita;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
+	@MapsId("ingredienteId")
+	@JoinColumn(name = "ingrediente_id")
 	private Ingrediente ingrediente;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@OneToOne
 	private UnidadeMedida unidadeMedida;
 
 }

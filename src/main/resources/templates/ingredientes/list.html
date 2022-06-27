@@ -33,12 +33,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="ingrediente : ${list}">
-					<td th:text="${ingrediente.id}" width="20%"></td>
+					<td th:text="${ingrediente.ingredienteId}" width="20%"></td>
 					<td th:text="${ingrediente.nome}" width="60%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/ingredientes/edit(id=${ingrediente.id})}">Editar</a> <a
+						th:href="@{/ingredientes/edit(id=${ingrediente.ingredienteId})}">Editar</a> <a
 						class="btn btn-danger btn-sm"
-						th:href="@{/ingredientes/delete(id=${ingrediente.id})}"
+						th:href="@{/ingredientes/delete(id=${ingrediente.ingredienteId})}"
 						onclick="return confirm('Você realmente deseja excluir esse ingrediente?')">Excluir</a>
 					</td>
 				</tr>

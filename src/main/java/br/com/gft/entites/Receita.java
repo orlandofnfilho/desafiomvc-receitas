@@ -1,16 +1,15 @@
 package br.com.gft.entites;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,16 +25,14 @@ public class Receita implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long receitaId;
 
-	@NotBlank(message = "Insira o nome.")
 	private String nome;
 
-	@NotNull(message = "Insira o tempo de preparo")
-	@Min(1)
 	private Integer tempoPreparo;
 
-	@Column(columnDefinition = "TEXT")
-	@NotEmpty
 	private String modoPreparo;
+
+	@OneToMany(mappedBy = "receita", cascade = CascadeType.ALL)
+	private Set<Item> items = new HashSet<>();
 }

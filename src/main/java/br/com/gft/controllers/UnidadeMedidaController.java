@@ -22,35 +22,24 @@ public class UnidadeMedidaController {
 	@Autowired
 	private UnidadeMedidaService unidadeMedidaService;
 
-	@GetMapping("/edit")
-	public ModelAndView edit(@RequestParam(required = false) Long id) {
+	@GetMapping("/new")
+	public ModelAndView newUnidadeMedida() {
 		ModelAndView mv = new ModelAndView("unidades/form");
-
-		UnidadeMedida unidadeMedida;
-
-		if (id == null) {
-			unidadeMedida = new UnidadeMedida();
-		} else {
-			try {
-				unidadeMedida = unidadeMedidaService.findById(id);
-			} catch (Exception e) {
-				unidadeMedida = new UnidadeMedida();
-				mv.addObject("message", e.getMessage());
-			}
-		}
-
-		mv.addObject("unidadeMedida", unidadeMedida);
+		mv.addObject("unidadeMedida", new UnidadeMedida());
 
 		return mv;
+
 	}
 
-	@PostMapping("/edit")
-	public ModelAndView edit(@Valid UnidadeMedida unidadeMedida, BindingResult bindingResult) {
+	@PostMapping("/new")
+	public ModelAndView saveUnidadeMedida(@Valid UnidadeMedida unidadeMedida, BindingResult bindingResult) {
+
 		ModelAndView mv = new ModelAndView("unidades/form");
-		boolean newUnidadeMedida = true;
+
+		boolean novo = true;
 
 		if (unidadeMedida.getId() != null) {
-			newUnidadeMedida = false;
+			novo = false;
 		}
 
 		if (bindingResult.hasErrors()) {
@@ -58,17 +47,36 @@ public class UnidadeMedidaController {
 			return mv;
 		}
 
-		UnidadeMedida unidadeMedidaSaved = unidadeMedidaService.insert(unidadeMedida);
+		UnidadeMedida undiadeMedidaSaved = unidadeMedidaService.insert(unidadeMedida);
 
-		if (newUnidadeMedida) {
+		if (novo) {
 			mv.addObject("unidadeMedida", new UnidadeMedida());
 		} else {
-			mv.addObject("unidadeMedida", unidadeMedidaSaved);
+			mv.addObject("unidadeMedida", undiadeMedidaSaved);
 		}
 
-		mv.addObject("message", "Unidade de medida salva com sucesso!");
+		mv.addObject("message", "Unidade de Medida salva com sucesso");
+
 		return mv;
 
+	}
+
+	@GetMapping("/edit")
+	public ModelAndView editUnidadeMedida(@RequestParam Long id) {
+
+		ModelAndView mv = new ModelAndView("unidades/form");
+		UnidadeMedida unidadeMedida;
+
+		try {
+			unidadeMedida = unidadeMedidaService.findById(id);
+		} catch (Exception e) {
+			unidadeMedida = new UnidadeMedida();
+			mv.addObject("message", e.getMessage());
+		}
+
+		mv.addObject("unidadeMedida", unidadeMedida);
+
+		return mv;
 	}
 
 	@GetMapping

@@ -1,7 +1,5 @@
 package br.com.gft.controllers;
 
-import java.util.Iterator;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.gft.entites.Ingrediente;
-import br.com.gft.entites.UnidadeMedida;
 import br.com.gft.services.IngredienteService;
-import br.com.gft.services.UnidadeMedidaService;
 
 @Controller
 @RequestMapping("/ingredientes")
@@ -26,39 +22,24 @@ public class IngredienteController {
 	@Autowired
 	private IngredienteService ingredienteService;
 
-	@Autowired
-	private UnidadeMedidaService unidadeMedidaService;
-
-	@GetMapping("/edit")
-	public ModelAndView edit(@RequestParam(required = false) Long id) {
+	@GetMapping("/new")
+	public ModelAndView newIngrediente() {
 		ModelAndView mv = new ModelAndView("ingredientes/form");
-
-		Ingrediente ingrediente;
-
-		if (id == null) {
-			ingrediente = new Ingrediente();
-		} else {
-			try {
-				ingrediente = ingredienteService.findById(id);
-			} catch (Exception e) {
-				ingrediente = new Ingrediente();
-				mv.addObject("message", e.getMessage());
-			}
-		}
-
-		mv.addObject("ingrediente", ingrediente);
-		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
+		mv.addObject("ingrediente", new Ingrediente());
 
 		return mv;
+
 	}
 
-	@PostMapping("/edit")
-	public ModelAndView edit(@Valid Ingrediente ingrediente, BindingResult bindingResult) {
-		ModelAndView mv = new ModelAndView("ingredientes/form");
-		boolean newIngrediente = true;
+	@PostMapping("/new")
+	public ModelAndView saveIngrediente(@Valid Ingrediente ingrediente, BindingResult bindingResult) {
 
-		if (ingrediente.getId() != null) {
-			newIngrediente = false;
+		ModelAndView mv = new ModelAndView("ingredientes/form");
+
+		boolean novo = true;
+
+		if (ingrediente.getIngredienteId() != null) {
+			novo = false;
 		}
 
 		if (bindingResult.hasErrors()) {
@@ -67,17 +48,35 @@ public class IngredienteController {
 		}
 
 		Ingrediente ingredienteSaved = ingredienteService.insert(ingrediente);
-		
-		if (newIngrediente) {
+
+		if (novo) {
 			mv.addObject("ingrediente", new Ingrediente());
 		} else {
 			mv.addObject("ingrediente", ingredienteSaved);
 		}
 
-		mv.addObject("message", "Ingrediente salvo com sucesso!");
-		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
+		mv.addObject("message", "Ingrediente salvo com sucesso");
+
 		return mv;
 
+	}
+
+	@GetMapping("/edit")
+	public ModelAndView editIngrediente(@RequestParam Long id) {
+
+		ModelAndView mv = new ModelAndView("ingredientes/form");
+		Ingrediente ingrediente;
+
+		try {
+			ingrediente = ingredienteService.findById(id);
+		} catch (Exception e) {
+			ingrediente = new Ingrediente();
+			mv.addObject("message", e.getMessage());
+		}
+
+		mv.addObject("ingrediente", ingrediente);
+
+		return mv;
 	}
 
 	@GetMapping

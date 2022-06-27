@@ -36,7 +36,7 @@
 								aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" th:href="@{/receitas}">Listar</a></li>
 								<li sec:authorize="hasRole('ADMIN')"><a
-									class="dropdown-item" th:href="@{/receitas/edit}">Cadastrar</a></li>
+									class="dropdown-item" th:href="@{/receitas/new}">Cadastrar</a></li>
 							</ul></li>
 						<li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')"><a
 							class="nav-link dropdown-toggle" href="#"
@@ -47,7 +47,7 @@
 								aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" th:href="@{/ingredientes}">Listar</a></li>
 								<li><a class="dropdown-item"
-									th:href="@{/ingredientes/edit}">Cadastrar</a></li>
+									th:href="@{/ingredientes/new}">Cadastrar</a></li>
 							</ul></li>
 						<li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')"><a
 							class="nav-link dropdown-toggle" href="#"
@@ -57,7 +57,7 @@
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" th:href="@{/unidades}">Listar</a></li>
-								<li><a class="dropdown-item" th:href="@{/unidades/edit}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/unidades/new}">Cadastrar</a></li>
 							</ul></li>
 					</ul>
 				</div>

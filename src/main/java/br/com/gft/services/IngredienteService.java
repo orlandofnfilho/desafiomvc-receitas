@@ -38,7 +38,7 @@ public class IngredienteService {
 	public List<Ingrediente> listByName(String nome) {
 		return ingredienteRepository.findByNomeContainingIgnoreCase(nome);
 	}
-
+	
 	public void delete(Long id) {
 		ingredienteRepository.deleteById(id);
 	}

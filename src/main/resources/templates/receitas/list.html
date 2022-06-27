@@ -11,12 +11,19 @@
 	<div th:if="${not #lists.isEmpty(list)}">
 		<div class="card mb-3">
 			<div class="card-header">
-				<p class="text-primary">Filtrar Ingredientes</p>
+				<p class="text-primary">Filtrar Receitas</p>
 			</div>
 			<div class="card-body">
 				<form method="GET">
 					<div class="form-group mb-3">
 						<label for="nome">Por nome:</label> <input class="form-control"
+							type="text" name="nome" th:value="${nome}"></input>
+					</div>
+					<button type="submit" class="btn btn-primary">Pesquisar</button>
+				</form>
+				<form method="GET">
+					<div class="form-group mb-3">
+						<label for="nome">Por ingrediente:</label> <input class="form-control"
 							type="text" name="nome" th:value="${nome}"></input>
 					</div>
 					<button type="submit" class="btn btn-primary">Pesquisar</button>
@@ -34,14 +41,14 @@
 			</thead>
 			<tbody>
 				<tr th:each="receita : ${list}">
-					<td th:text="${receita.id}" width="10%"></td>
-					<td th:text="${receita.tempoPreparo}" width="20%"></td>
+					<td th:text="${receita.receitaId}" width="10%"></td>
+					<td th:text="${receita.tempoPreparo}" width="10%"></td>
 					<td th:text="${receita.nome}" width="60%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.id})}">Ver</a><a class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.id})}">Editar</a> <a
+						th:href="@{/receitas/edit(id=${receita.receitaId})}">Ver</a><a class="btn btn-primary btn-sm"
+						th:href="@{/receitas/edit(id=${receita.receitaId})}">Editar</a> <a
 						class="btn btn-danger btn-sm"
-						th:href="@{/receitas/delete(id=${receita.id})}"
+						th:href="@{/receitas/delete(id=${receita.receitaId})}"
 						onclick="return confirm('Você realmente deseja excluir essa receita?')">Excluir</a>
 					</td>
 				</tr>

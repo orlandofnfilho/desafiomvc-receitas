@@ -11,55 +11,22 @@
 			<p class="text-primary">Nova Receita</p>
 		</div>
 		<div class="card-body">
-			<form method="POST" th:object="${receitaIngrediente}"
-				th:action="@{/receitas/edit}">
-				<input type="hidden" th:field="*{id}">
+			<form method="POST" th:object="${receita}"
+				th:action="@{/receitas/new}">
+				<input type="hidden" th:field="*{receitaId}">
 				<div class="form-group mb-3">
 					<label for="nome">Nome da Receita:</label> <input
-						class="form-control" type="text" th:field="*{receita.nome}"
+						class="form-control" type="text" th:field="*{nome}"
 						required></input>
 				</div>
 				<div class="form-group mb-3">
-					<label for="receita">Tempo de preparo:</label> <input
+					<label for="tempoPreparo">Tempo de preparo:</label> <input
 						class="form-control" type="number"
-						th:field="*{receita.tempoPreparo}" required></input>
+						th:field="*{tempoPreparo}" required></input>
 					<div class="text-danger"
-						th:if="${#fields.hasErrors('receita.tempoPreparo')}"
-						th:errors="*{receita.tempoPreparo}"></div>
-				</div>
-
-				<div class="form-group mb-3">
-					<label for="ingrediente">Ingrediente:</label> <select
-						class="form-select" th:field="*{ingrediente}">
-						<option th:each="ingrediente: ${listaIngrediente}"
-							th:value="${ingrediente.id}" th:text="${ingrediente.nome}" />
-					</select>
-				</div>
-				<div class="form-group mb-3">
-					<label for="unidadeMedida">Unidade de Medida:</label> <select
-						class="form-select" th:field="*{ingrediente.unidadesMedidas}">
-						<option th:each="unidadeMedida: ${listaUnidadeMedida}"
-							th:value="${unidadeMedida.id}" th:text="${unidadeMedida.nome}" />
-					</select>
-				</div>
-				<div class="form-group mb-3">
-					<label for="quantidade">Quantidade:</label> <input
-						class="form-control" step="0.01" min="0.01" type="number"
-						th:field="*{quantidade}" required></input>
-					<div class="text-danger" th:if="${#fields.hasErrors('quantidade')}"
-						th:errors="*{quantidade}"></div>
-				</div>
-				<div class="form-group mb-3">
-					<label for="urlImagem">URL da imagem:</label> <input
-						class="form-control" type="text" th:field="*{receita.urlImagem}"
-						required></input>
-
-				</div>
-				<div class="form-group">
-					<label for="Modo de Preparo">Modo de Preparo:</label>
-					<textarea class="form-control" id="exampleFormControlTextarea1"
-						rows="3" th:field="*{receita.modoPreparo}"></textarea>
-				</div>
+						th:if="${#fields.hasErrors('tempoPreparo')}"
+						th:errors="*{tempoPreparo}"></div>
+				</div>	
 				<button type="submit" class="btn btn-primary" id="salvar">Salvar
 					Receita</button>
 			</form>
