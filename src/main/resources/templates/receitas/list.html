@@ -23,8 +23,8 @@
 				</form>
 				<form method="GET">
 					<div class="form-group mb-3">
-						<label for="nome">Por ingrediente:</label> <input class="form-control"
-							type="text" name="nome" th:value="${nome}"></input>
+						<label for="nome">Por ingrediente:</label> <input
+							class="form-control" type="text" name="nome" th:value="${nome}"></input>
 					</div>
 					<button type="submit" class="btn btn-primary">Pesquisar</button>
 				</form>
@@ -45,7 +45,8 @@
 					<td th:text="${receita.tempoPreparo}" width="10%"></td>
 					<td th:text="${receita.nome}" width="60%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.receitaId})}">Ver</a><a class="btn btn-primary btn-sm"
+						th:href="@{/receitas/edit(id=${receita.receitaId})}">Ver</a> <a
+						class="btn btn-primary btn-sm"
 						th:href="@{/receitas/edit(id=${receita.receitaId})}">Editar</a> <a
 						class="btn btn-danger btn-sm"
 						th:href="@{/receitas/delete(id=${receita.receitaId})}"

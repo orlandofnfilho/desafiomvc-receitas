@@ -34,5 +34,5 @@ public class Receita implements Serializable {
 	private String modoPreparo;
 
 	@OneToMany(mappedBy = "receita", cascade = CascadeType.ALL)
-	private Set<Item> items = new HashSet<>();
+	private Set<Item> itens = new HashSet<>();
 }

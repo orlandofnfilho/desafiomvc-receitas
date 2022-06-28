@@ -24,5 +24,4 @@ public class Ingrediente implements Serializable {
 	private Long ingredienteId;
 
 	private String nome;
-
 }

@@ -1,7 +1,6 @@
 package br.com.gft.entites;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -25,8 +24,6 @@ public class Item implements Serializable {
 	@EmbeddedId
 	private ItemId id = new ItemId();
 
-	private BigDecimal quantidade;
-
 	@ManyToOne
 	@MapsId("receitaId")
 	@JoinColumn(name = "receita_id")
@@ -36,6 +33,8 @@ public class Item implements Serializable {
 	@MapsId("ingredienteId")
 	@JoinColumn(name = "ingrediente_id")
 	private Ingrediente ingrediente;
+
+	private Double quantidade;
 
 	@OneToOne
 	private UnidadeMedida unidadeMedida;

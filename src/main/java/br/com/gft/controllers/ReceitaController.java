@@ -27,7 +27,7 @@ public class ReceitaController {
 
 	@Autowired
 	private IngredienteService ingredienteService;
-	
+
 	@Autowired
 	private UnidadeMedidaService unidadeMedidaService;
 
@@ -37,6 +37,7 @@ public class ReceitaController {
 	@GetMapping("/new")
 	public ModelAndView newReceita() {
 		ModelAndView mv = new ModelAndView("receitas/form");
+
 		mv.addObject("receita", new Receita());
 
 		return mv;
