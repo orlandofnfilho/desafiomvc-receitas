@@ -1,8 +1,9 @@
 package br.com.gft.entites;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ public class Receita implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long receitaId;
+	private Long id;
 
 	private String nome;
 
@@ -33,6 +34,39 @@ public class Receita implements Serializable {
 
 	private String modoPreparo;
 
-	@OneToMany(mappedBy = "receita", cascade = CascadeType.ALL)
-	private Set<Item> itens = new HashSet<>();
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "receita")
+	private List<Item> itens = new ArrayList<>();
+
+	public void addItem(Item item) {
+		this.itens.add(item);
+		item.setReceita(this);
+	}
+
+	public void removeItem(Item item) {
+		this.itens.remove(item);
+	}
+
+	public void removeItem(int index) {
+		Item item = this.itens.get(index);
+
+		if (item != null) {
+			this.itens.remove(index);
+		}
+	}
+
+	public void corrigirItens() {
+		limparItensVazios();
+
+		for (Item item : itens) {
+			item.setReceita(this);
+		}
+	}
+
+	private void limparItensVazios() {
+		List<Item> itensVazios = itens.stream().filter(i -> i.isVazio()).collect(Collectors.toList());
+
+		for (Item item : itensVazios) {
+			removeItem(item);
+		}
+	}
 }

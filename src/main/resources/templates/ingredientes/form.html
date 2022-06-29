@@ -13,7 +13,7 @@
 		<div class="card-body">
 			<form method="POST" th:object="${ingrediente}"
 				th:action="@{/ingredientes/new}">
-				<input type="hidden" th:field="*{ingredienteId}">
+				<input type="hidden" th:field="*{id}">
 				<div class="form-group mb-3">
 					<label for="nome">Nome do ingrediente:</label> <input
 						class="form-control" type="text" th:field="*{nome}" required></input>

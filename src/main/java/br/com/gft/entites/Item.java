@@ -2,12 +2,15 @@ package br.com.gft.entites;
 
 import java.io.Serializable;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+
+import org.springframework.util.StringUtils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,22 +24,24 @@ public class Item implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private ItemId id = new ItemId();
+	@Id
+	@GeneratedValue
+	private Long id;
 
 	@ManyToOne
-	@MapsId("receitaId")
 	@JoinColumn(name = "receita_id")
 	private Receita receita;
 
-	@ManyToOne
-	@MapsId("ingredienteId")
-	@JoinColumn(name = "ingrediente_id")
+	@OneToOne(cascade = CascadeType.PERSIST)
 	private Ingrediente ingrediente;
 
 	private Double quantidade;
 
 	@OneToOne
 	private UnidadeMedida unidadeMedida;
+
+	public boolean isVazio() {
+		return !StringUtils.hasText(this.ingrediente.getNome());
+	}
 
 }

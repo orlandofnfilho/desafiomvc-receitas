@@ -15,8 +15,7 @@
 		<p>Aqui você encontrará receitas, seus ingredientes, unidades de medidas e o passo de como fazê-las.</p>
 		<p>Espero que aproveite :)</p>
 		<a class="btn btn-primary btn-sm" th:href="@{/receitas}">Ir para listagem</a>
-			<a class="btn btn-primary btn-sm" th:href="@{/popular}"
-			sec:authorize="hasRole('ADMIN')">Popular Banco</a>
+		<a class="btn btn-primary btn-sm" th:href="@{/popular}" sec:authorize="hasAuthority('ADMIN')">Popular Banco</a>
 	</div>
 </div>
 </html>

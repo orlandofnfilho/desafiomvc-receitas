@@ -38,7 +38,7 @@ public class IngredienteController {
 
 		boolean novo = true;
 
-		if (ingrediente.getIngredienteId() != null) {
+		if (ingrediente.getId() != null) {
 			novo = false;
 		}
 

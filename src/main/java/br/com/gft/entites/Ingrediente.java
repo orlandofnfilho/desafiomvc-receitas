@@ -21,7 +21,7 @@ public class Ingrediente implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long ingredienteId;
+	private Long id;
 
 	private String nome;
 }

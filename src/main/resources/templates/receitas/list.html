@@ -41,15 +41,15 @@
 			</thead>
 			<tbody>
 				<tr th:each="receita : ${list}">
-					<td th:text="${receita.receitaId}" width="10%"></td>
-					<td th:text="${receita.tempoPreparo}" width="10%"></td>
+					<td th:text="${receita.id}" width="10%"></td>
 					<td th:text="${receita.nome}" width="60%"></td>
+					<td th:text="${receita.tempoPreparo}" width="10%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.receitaId})}">Ver</a> <a
+						th:href="@{/receitas/edit(id=${receita.id})}">Ver</a> <a
 						class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.receitaId})}">Editar</a> <a
+						th:href="@{/receitas/edit(id=${receita.id})}">Editar</a> <a
 						class="btn btn-danger btn-sm"
-						th:href="@{/receitas/delete(id=${receita.receitaId})}"
+						th:href="@{/receitas/delete(id=${receita.id})}"
 						onclick="return confirm('Você realmente deseja excluir essa receita?')">Excluir</a>
 					</td>
 				</tr>

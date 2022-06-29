@@ -35,29 +35,28 @@
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" th:href="@{/receitas}">Listar</a></li>
-								<li sec:authorize="hasRole('ADMIN')"><a
-									class="dropdown-item" th:href="@{/receitas/new}">Cadastrar</a></li>
+								<li><a
+									class="dropdown-item" th:href="@{/receitas/new}" sec:authorize="hasAuthority('ADMIN')">Cadastrar</a></li>
 							</ul></li>
-						<li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')"><a
+						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Ingredientes
+							data-bs-toggle="dropdown" aria-expanded="false" sec:authorize="hasAuthority('ADMIN')"> Ingredientes
 						</a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/ingredientes}">Listar</a></li>
-								<li><a class="dropdown-item"
-									th:href="@{/ingredientes/new}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/ingredientes}" sec:authorize="hasAuthority('ADMIN')">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/ingredientes/new}" sec:authorize="hasAuthority('ADMIN')">Cadastrar</a></li>
 							</ul></li>
-						<li class="nav-item dropdown" sec:authorize="hasRole('ADMIN')"><a
+						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle" href="#"
 							id="navbarDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Unidade de
+							data-bs-toggle="dropdown" aria-expanded="false" sec:authorize="hasAuthority('ADMIN')"> Unidade de
 								Medidas </a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
-								<li><a class="dropdown-item" th:href="@{/unidades}">Listar</a></li>
-								<li><a class="dropdown-item" th:href="@{/unidades/new}">Cadastrar</a></li>
+								<li><a class="dropdown-item" th:href="@{/unidades}" sec:authorize="hasAuthority('ADMIN')">Listar</a></li>
+								<li><a class="dropdown-item" th:href="@{/unidades/new}" sec:authorize="hasAuthority('ADMIN')">Cadastrar</a></li>
 							</ul></li>
 					</ul>
 				</div>
