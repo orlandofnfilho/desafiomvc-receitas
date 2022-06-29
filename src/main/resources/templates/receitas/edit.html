@@ -8,7 +8,7 @@
 		th:text="${message}"></div>
 	<div class="card">
 		<div class="card-header">
-			<p class="text-primary">Nova Receita</p>
+			<p class="text-primary">Editar Receita</p>
 		</div>
 		<div class="card-body">
 			<form method="POST" th:object="${receita}"
@@ -25,6 +25,30 @@
 				<div class="text-danger"
 					th:if="${#fields.hasErrors('tempoPreparo')}"
 					th:errors="*{tempoPreparo}"></div>
+				<p class="h5 mt-2">Ingredientes:</p>
+				<table class="table table-borderless">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Quantidade</th>
+							<th>Unidade de Medida</th>
+							<th>Opções</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="item : ${listaItem}">
+							<td th:text="${item.ingrediente.nome}"></td>
+							<td th:text="${item.quantidade}"></td>
+							<td th:text="${item.unidadeMedida.nome}"></td>
+							<td><a class="btn btn-danger btn-sm"
+								th:href="@{/itens/delete(id=${item.id})}"
+								onclick="return confirm('Você realmente deseja excluir esse ingrediente?')">Remover</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<a class="btn btn-primary btn-sm mb-3" th:href="@{/itens/new}">Adicionar
+					Ingrediente</a>
 				<!-- Modo Preparo -->
 				<div class="form-group">
 					<label for="modoPreparo">Modo de Preparo</label>

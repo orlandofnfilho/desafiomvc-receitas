@@ -37,36 +37,4 @@ public class Receita implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "receita")
 	private List<Item> itens = new ArrayList<>();
 
-	public void addItem(Item item) {
-		this.itens.add(item);
-		item.setReceita(this);
-	}
-
-	public void removeItem(Item item) {
-		this.itens.remove(item);
-	}
-
-	public void removeItem(int index) {
-		Item item = this.itens.get(index);
-
-		if (item != null) {
-			this.itens.remove(index);
-		}
-	}
-
-	public void corrigirItens() {
-		limparItensVazios();
-
-		for (Item item : itens) {
-			item.setReceita(this);
-		}
-	}
-
-	private void limparItensVazios() {
-		List<Item> itensVazios = itens.stream().filter(i -> i.isVazio()).collect(Collectors.toList());
-
-		for (Item item : itensVazios) {
-			removeItem(item);
-		}
-	}
 }

@@ -4,7 +4,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.gft.entites.Item;
 import br.com.gft.entites.Receita;
-import br.com.gft.repositories.ItemRepository;
 import br.com.gft.services.IngredienteService;
+import br.com.gft.services.ItemService;
 import br.com.gft.services.ReceitaService;
 import br.com.gft.services.UnidadeMedidaService;
 
@@ -34,14 +32,16 @@ public class ReceitaController {
 	private UnidadeMedidaService unidadeMedidaService;
 
 	@Autowired
-	private ItemRepository itemRepository;
+	private ItemService itemService;
 
 	@GetMapping("/new")
 	public ModelAndView newReceita() {
 		ModelAndView mv = new ModelAndView("receitas/form");
 
 		mv.addObject("receita", new Receita());
+		mv.addObject("listaItem", itemService.findAll());
 		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 
 		return mv;
 
@@ -59,7 +59,9 @@ public class ReceitaController {
 		}
 
 		if (bindingResult.hasErrors()) {
-			mv.addObject("receita", receita);
+			mv.addObject("listaItem", itemService.findAll());
+			mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+			mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 			return mv;
 		}
 
@@ -67,10 +69,14 @@ public class ReceitaController {
 
 		if (novo) {
 			mv.addObject("receita", new Receita());
+			mv.addObject("listaItem", itemService.findAll());
 			mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+			mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 		} else {
 			mv.addObject("receita", receitaSaved);
+			mv.addObject("listaItem", itemService.findAll());
 			mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+			mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 		}
 
 		mv.addObject("message", "Receita salva com sucesso");
@@ -82,7 +88,7 @@ public class ReceitaController {
 	@GetMapping("/edit")
 	public ModelAndView editReceita(@RequestParam Long id) {
 
-		ModelAndView mv = new ModelAndView("receitas/form");
+		ModelAndView mv = new ModelAndView("receitas/edit");
 		Receita receita;
 
 		try {
@@ -93,24 +99,20 @@ public class ReceitaController {
 		}
 
 		mv.addObject("receita", receita);
+		mv.addObject("listaItem", itemService.findAll());
+		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 
 		return mv;
-	}
-
-	@RequestMapping(value = "/new", params = { "addItem" })
-	public String addItem(Receita receita, BindingResult bindingResult, Model model) {
-		receita.addItem(new Item());
-		String fieldId = "itens" + (receita.getItens().size() - 1) + "Nome";
-		model.addAttribute("ingredientes", ingredienteService.findAll(fieldId));
-		model.addAttribute("fieldToFocus", fieldId);
-
-		return "receitas/edit";
 	}
 
 	@GetMapping
 	public ModelAndView list(String nome) {
 		ModelAndView mv = new ModelAndView("receitas/list");
 		mv.addObject("list", receitaService.findAll(nome));
+		mv.addObject("listaItem", itemService.findAll());
+		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 		mv.addObject("nome", nome);
 		return mv;
 
@@ -131,5 +133,4 @@ public class ReceitaController {
 		return mv;
 
 	}
-
 }

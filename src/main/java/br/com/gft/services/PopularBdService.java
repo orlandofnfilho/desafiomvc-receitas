@@ -29,12 +29,12 @@ public class PopularBdService {
 			// Insert Undiades de Medidas
 
 			List<UnidadeMedida> listaUnidadeMedidas = new ArrayList<>();
-			listaUnidadeMedidas.add(new UnidadeMedida(null, "Xícara"));
+			listaUnidadeMedidas.add(new UnidadeMedida(null, "Xícaras"));
 			listaUnidadeMedidas.add(new UnidadeMedida(null, "Colher de sopa"));
 			listaUnidadeMedidas.add(new UnidadeMedida(null, "Colher de chá"));
-			listaUnidadeMedidas.add(new UnidadeMedida(null, "Copo"));
+			listaUnidadeMedidas.add(new UnidadeMedida(null, "Copos"));
 			listaUnidadeMedidas.add(new UnidadeMedida(null, "Gramas"));
-			listaUnidadeMedidas.add(new UnidadeMedida(null, "Litro"));
+			listaUnidadeMedidas.add(new UnidadeMedida(null, "Litros"));
 
 			List<UnidadeMedida> listaSalva = unidadeMedidaService.findAll(null);
 
