@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.springframework.util.StringUtils;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,5 +39,9 @@ public class Item implements Serializable {
 
 	@OneToOne
 	private UnidadeMedida unidadeMedida;
+
+	public boolean isVazio() {
+		return !StringUtils.hasText(this.ingrediente.getNome());
+	}
 
 }
