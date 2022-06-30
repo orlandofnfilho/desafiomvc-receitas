@@ -13,8 +13,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.gft.entites.Receita;
-import br.com.gft.repositories.ItemRepository;
 import br.com.gft.services.IngredienteService;
+import br.com.gft.services.ItemService;
 import br.com.gft.services.ReceitaService;
 import br.com.gft.services.UnidadeMedidaService;
 
@@ -32,7 +32,7 @@ public class ReceitaController {
 	private UnidadeMedidaService unidadeMedidaService;
 
 	@Autowired
-	private ItemRepository itemRepository;
+	private ItemService itemService;
 
 	@GetMapping("/new")
 	public ModelAndView newReceita() {
@@ -40,7 +40,7 @@ public class ReceitaController {
 
 		mv.addObject("receita", new Receita());
 		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
-
+		mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		return mv;
 
 	}
@@ -52,7 +52,7 @@ public class ReceitaController {
 
 		boolean novo = true;
 
-		if (receita.getId() != null) {
+		if (receita.getReceitaId() != null) {
 			novo = false;
 		}
 
@@ -65,10 +65,14 @@ public class ReceitaController {
 
 		if (novo) {
 			mv.addObject("receita", new Receita());
+			mv.addObject("listaItem", receita.getItens());
 			mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+			mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		} else {
 			mv.addObject("receita", receitaSaved);
+			mv.addObject("listaItem", receita.getItens());
 			mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+			mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		}
 
 		mv.addObject("message", "Receita salva com sucesso");
@@ -80,7 +84,7 @@ public class ReceitaController {
 	@GetMapping("/edit")
 	public ModelAndView editReceita(@RequestParam Long id) {
 
-		ModelAndView mv = new ModelAndView("receitas/form");
+		ModelAndView mv = new ModelAndView("receitas/edit");
 		Receita receita;
 
 		try {
@@ -91,6 +95,9 @@ public class ReceitaController {
 		}
 
 		mv.addObject("receita", receita);
+		mv.addObject("listaItem", receita.getItens());
+		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+		mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 
 		return mv;
 	}
@@ -99,6 +106,9 @@ public class ReceitaController {
 	public ModelAndView list(String nome) {
 		ModelAndView mv = new ModelAndView("receitas/list");
 		mv.addObject("list", receitaService.findAll(nome));
+		mv.addObject("listaItem", itemService.findAll());
+		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+		mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		mv.addObject("nome", nome);
 		return mv;
 

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>GFT Receitas</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<style>
+.login-form {
+	width: 340px;
+	margin: 50px auto;
+	font-size: 15px;
+}
+
+.login-form form {
+	margin-bottom: 15px;
+	background: #f7f7f7;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+
+.login-form h2 {
+	margin: 0 0 15px;
+}
+
+.form-control, .btn {
+	min-height: 38px;
+	border-radius: 2px;
+}
+
+.btn {
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+</style>
+</head>
+<body>
+    <div class="container my-5">
+		<h2>Cadastrar Usuário</h2>
+		<div class="card">
+			<div class="card-body">
+				<div class="col-md-15">
+					<form action="#" th:action="@{/cadastrar}"
+						th:object="${usuario}" method="POST" id="cadastrarUsuario">
+						<div class="row">
+							<input type="hidden" id="id" th:field="*{id}">
+							<div class="form-group col-md-12">
+								<label for="email" class="col-form-label">E-mail</label>
+								<input type="email" th:field="*{username}" class="form-control"
+									id="username" placeholder="E-mail"required="required"> <span
+									th:if="${#fields.hasErrors('username')}"
+									th:errors="*{username}" class="text-danger"></span>
+							</div>
+
+							<div class="form-group col-md-12">
+								<label for="senha" class="col-form-label">Senha</label> <input
+									type="password" th:field="*{password}" class="form-control" id="password"
+									placeholder="Senha" required="required"> <span
+									th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+									class="text-danger"></span>
+							</div>
+
+							<div class="col-md-6">
+								<input type="submit" class="btn btn-outline-primary"
+									value="Cadastrar">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

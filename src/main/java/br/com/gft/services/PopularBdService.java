@@ -48,12 +48,12 @@ public class PopularBdService {
 
 			List<Ingrediente> listaIngredientes = new ArrayList<>();
 
-			listaIngredientes.add(new Ingrediente(null, "Açúcar"));
-			listaIngredientes.add(new Ingrediente(null, "Achocolatado"));
-			listaIngredientes.add(new Ingrediente(null, "Sal"));
-			listaIngredientes.add(new Ingrediente(null, "Farinha de trigo"));
-			listaIngredientes.add(new Ingrediente(null, "Água"));
-			listaIngredientes.add(new Ingrediente(null, "Fermento"));
+			listaIngredientes.add(new Ingrediente(null, "Açúcar", null));
+			listaIngredientes.add(new Ingrediente(null, "Achocolatado", null));
+			listaIngredientes.add(new Ingrediente(null, "Sal", null));
+			listaIngredientes.add(new Ingrediente(null, "Farinha de trigo", null));
+			listaIngredientes.add(new Ingrediente(null, "Água", null));
+			listaIngredientes.add(new Ingrediente(null, "Fermento", null));
 
 			List<Ingrediente> listaSalva2 = IngredienteService.findAll(null);
 
