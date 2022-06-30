@@ -23,8 +23,8 @@
 				</form>
 				<form method="GET">
 					<div class="form-group mb-3">
-						<label for="nome">Por ingrediente:</label> <input
-							class="form-control" type="text" name="nome" th:value="${nome}"></input>
+						<label for="nomeIngrediente">Por ingrediente:</label> <input
+							class="form-control" type="text" name="nomeIngrediente" th:value="${nomeIngrediente}"></input>
 					</div>
 					<button type="submit" class="btn btn-primary">Pesquisar</button>
 				</form>
@@ -35,22 +35,22 @@
 				<tr>
 					<th>#</th>
 					<th>Nome</th>
-					<th>Tempo de Preparo</th>
+					<th>Tempo de Preparo(Minutos)</th>
 					<th>Opções</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="receita : ${list}">
 					<td th:text="${receita.receitaId}" width="10%"></td>
-					<td th:text="${receita.nome}" width="60%"></td>
-					<td th:text="${receita.tempoPreparo}" width="10%"></td>
+					<td th:text="${receita.nome}" width="40%"></td>
+					<td th:text="${receita.tempoPreparo}" width="30%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.receitaId})}">Ver</a> <a
+						th:href="@{/receitas/edit(id=${receita.receitaId})}">Exibir</a> <a
 						class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.receitaId})}">Editar</a> <a
+						th:href="@{/receitas/edit(id=${receita.receitaId})}" sec:authorize="hasAuthority('ADMIN')">Editar</a> <a
 						class="btn btn-danger btn-sm"
 						th:href="@{/receitas/delete(id=${receita.receitaId})}"
-						onclick="return confirm('Você realmente deseja excluir essa receita?')">Excluir</a>
+						onclick="return confirm('Você realmente deseja excluir essa receita?')" sec:authorize="hasAuthority('ADMIN')">Excluir</a>
 					</td>
 				</tr>
 			</tbody>

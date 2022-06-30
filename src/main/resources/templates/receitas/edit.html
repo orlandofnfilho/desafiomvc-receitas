@@ -42,12 +42,12 @@
 							<td th:text="${item.unidadeMedida.nome}"></td>
 							<td><a class="btn btn-danger btn-sm"
 								th:href="@{/itens/delete(id=${item.id})}"
-								onclick="return confirm('Você realmente deseja excluir esse ingrediente?')">Remover</a>
+								onclick="return confirm('Você realmente deseja excluir esse ingrediente?')" sec:authorize="hasAuthority('ADMIN')">Remover</a>
 							</td>
 						</tr>
 					</tbody>
 				</table>
-				<a class="btn btn-primary btn-sm mb-3" th:href="@{/itens/new}">Adicionar
+				<a class="btn btn-primary btn-sm mb-3" th:href="@{/itens/new}" sec:authorize="hasAuthority('ADMIN')">Adicionar
 					Ingrediente</a>
 				<!-- Modo Preparo -->
 				<div class="form-group">

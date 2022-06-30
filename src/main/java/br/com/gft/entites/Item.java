@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Digits;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +32,7 @@ public class Item implements Serializable {
 	@ManyToOne
 	private Ingrediente ingrediente;
 
+	@Digits(fraction = 2, integer = 10)
 	private BigDecimal quantidade;
 
 	@ManyToOne

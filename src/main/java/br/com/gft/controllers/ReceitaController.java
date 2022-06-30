@@ -37,7 +37,6 @@ public class ReceitaController {
 	@GetMapping("/new")
 	public ModelAndView newReceita() {
 		ModelAndView mv = new ModelAndView("receitas/form");
-
 		mv.addObject("receita", new Receita());
 		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
 		mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
@@ -65,16 +64,13 @@ public class ReceitaController {
 
 		if (novo) {
 			mv.addObject("receita", new Receita());
-			mv.addObject("listaItem", receita.getItens());
-			mv.addObject("listaIngrediente", ingredienteService.findAll(null));
-			mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		} else {
 			mv.addObject("receita", receitaSaved);
-			mv.addObject("listaItem", receita.getItens());
-			mv.addObject("listaIngrediente", ingredienteService.findAll(null));
-			mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		}
 
+		mv.addObject("listaItem", receita.getItens());
+		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
+		mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		mv.addObject("message", "Receita salva com sucesso");
 
 		return mv;

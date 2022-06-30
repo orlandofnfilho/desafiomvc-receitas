@@ -24,6 +24,7 @@ public class UnidadeMedida implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank(message = "Insira o nome")
 	private String nome;
 
 }
