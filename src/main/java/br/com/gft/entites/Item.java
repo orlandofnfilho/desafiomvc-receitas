@@ -40,8 +40,5 @@ public class Item implements Serializable {
 	@OneToOne
 	private UnidadeMedida unidadeMedida;
 
-	public boolean isVazio() {
-		return !StringUtils.hasText(this.ingrediente.getNome());
-	}
 
 }
