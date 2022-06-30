@@ -28,15 +28,21 @@ public class ReceitaService {
 
 	}
 
-	public List<Receita> findAll(String nome) {
+	public List<Receita> findAll(String nome, String nomeIngrediente) {
 		if (nome != null)
 			return listByName(nome);
+		if (nomeIngrediente != null)
+			return listByIngrediente(nomeIngrediente);
 
 		return receitaRepository.findAll();
 	}
 
 	public List<Receita> listByName(String nome) {
 		return receitaRepository.findByNomeContainingIgnoreCase(nome);
+	}
+
+	public List<Receita> listByIngrediente(String nomeIngrediente) {
+		return receitaRepository.findByItens_IngredienteNome(nomeIngrediente);
 	}
 
 	public void delete(Long id) {

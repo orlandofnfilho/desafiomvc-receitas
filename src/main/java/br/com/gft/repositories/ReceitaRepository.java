@@ -14,4 +14,6 @@ public interface ReceitaRepository extends JpaRepository<Receita, Long> {
 	List<Receita> findByNomeContainingIgnoreCase(String nome);
 
 	Optional<Receita> findByNomeIgnoreCase(String nome);
+
+	List<Receita> findByItens_IngredienteNome(String nomeIngrediente);
 }

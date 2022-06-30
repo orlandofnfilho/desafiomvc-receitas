@@ -20,13 +20,14 @@
 					<div class="text-danger" th:if="${#fields.hasErrors('nome')}"
 						th:errors="*{nome}"></div>
 				</div>
-				<button type="submit" class="btn btn-primary mt-2" id="salvar" sec:authorize="hasAuthority('ADMIN')">Salvar
-					Ingrediente</button>
-					<a class="btn btn-primary mt-2" type="button"
+				<button type="submit" class="btn btn-primary mt-2" id="salvar"
+					sec:authorize="hasAuthority('ADMIN')">Salvar Ingrediente</button>
+				<a class="btn btn-primary mt-2" type="button"
 					href="javascript:history.back()">Voltar a página anterior</a>
 			</form>
 		</div>
 	</div>
+
 </div>
 
 </html>

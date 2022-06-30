@@ -24,7 +24,8 @@
 				<form method="GET">
 					<div class="form-group mb-3">
 						<label for="nomeIngrediente">Por ingrediente:</label> <input
-							class="form-control" type="text" name="nomeIngrediente" th:value="${nomeIngrediente}"></input>
+							class="form-control" type="text" name="nomeIngrediente"
+							th:value="${nomeIngrediente}"></input>
 					</div>
 					<button type="submit" class="btn btn-primary">Pesquisar</button>
 				</form>
@@ -47,15 +48,18 @@
 					<td><a class="btn btn-primary btn-sm"
 						th:href="@{/receitas/edit(id=${receita.receitaId})}">Exibir</a> <a
 						class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.receitaId})}" sec:authorize="hasAuthority('ADMIN')">Editar</a> <a
+						th:href="@{/receitas/edit(id=${receita.receitaId})}"
+						sec:authorize="hasAuthority('ADMIN')">Editar</a> <a
 						class="btn btn-danger btn-sm"
 						th:href="@{/receitas/delete(id=${receita.receitaId})}"
-						onclick="return confirm('Você realmente deseja excluir essa receita?')" sec:authorize="hasAuthority('ADMIN')">Excluir</a>
-					</td>
+						onclick="return confirm('Você realmente deseja excluir essa receita?')"
+						sec:authorize="hasAuthority('ADMIN')">Excluir</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	<a class="btn btn-primary mt-2" type="button"
+		href="javascript:history.back()">Voltar a página anterior</a>
 </div>
 
 </html>

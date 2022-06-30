@@ -39,7 +39,7 @@ public class ItemController {
 		ModelAndView mv = new ModelAndView("itens/form");
 
 		mv.addObject("item", new Item());
-		mv.addObject("listaReceita", receitaService.findAll(null));
+		mv.addObject("listaReceita", receitaService.findAll(null, null));
 		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
 		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 		return mv;
@@ -70,22 +70,11 @@ public class ItemController {
 			mv.addObject("item", itemSaved);
 		}
 
-		mv.addObject("listaReceita", receitaService.findAll(null));
+		mv.addObject("listaReceita", receitaService.findAll(null, null));
 		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
 		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 		mv.addObject("message", "Item adicionado");
 
-		return mv;
-
-	}
-
-	@GetMapping
-	public ModelAndView list() {
-		ModelAndView mv = new ModelAndView("receitas/list");
-		mv.addObject("listaItem", itemService.findAll());
-		mv.addObject("listaReceita", receitaService.findAll(null));
-		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
-		mv.addObject("listaUnidadeMedida", unidadeMedidaService.findAll(null));
 		return mv;
 
 	}

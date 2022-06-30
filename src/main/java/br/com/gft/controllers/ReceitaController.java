@@ -99,13 +99,15 @@ public class ReceitaController {
 	}
 
 	@GetMapping
-	public ModelAndView list(String nome) {
+	public ModelAndView list(@RequestParam(required = false) String nome,
+			@RequestParam(required = false) String nomeIngrediente) {
 		ModelAndView mv = new ModelAndView("receitas/list");
-		mv.addObject("list", receitaService.findAll(nome));
+		mv.addObject("list", receitaService.findAll(nome, nomeIngrediente));
 		mv.addObject("listaItem", itemService.findAll());
 		mv.addObject("listaIngrediente", ingredienteService.findAll(null));
 		mv.addObject("listaUndiadeMedida", unidadeMedidaService.findAll(null));
 		mv.addObject("nome", nome);
+		mv.addObject("nomeIngrediente", nomeIngrediente);
 		return mv;
 
 	}
