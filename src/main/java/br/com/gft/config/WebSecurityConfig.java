@@ -23,7 +23,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/image").permitAll().antMatchers("/index").authenticated()
+		http.authorizeRequests().antMatchers("/image").permitAll()
+				.antMatchers("/cadastrar").permitAll()
+				.antMatchers("/index").authenticated()
 				.antMatchers("/unidades/**").hasAuthority(Role.ADMIN.getNome())
 				.antMatchers("/ingredientes/**").hasAuthority(Role.ADMIN.getNome())
 				.antMatchers("/receitas/edit").hasAuthority(Role.ADMIN.getNome())

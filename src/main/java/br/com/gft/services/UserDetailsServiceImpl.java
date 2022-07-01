@@ -21,6 +21,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepo;
+	
 
 	@Override
 	@Transactional

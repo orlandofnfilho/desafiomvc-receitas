@@ -36,7 +36,7 @@ public class UsuarioController {
 		if (bindingResult.hasErrors()) {
 			return "/cadastrar";
 		}
-		passwordEncoder.encode(usuario.getPassword());
+		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		repository.save(usuario);
 		model.addAttribute("message", "Usuário cadastrado");
 

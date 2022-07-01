@@ -97,14 +97,13 @@
 			</div>
 			<div class="clearfix">
 				<label class="float-left form-check-label"><input
-					type="checkbox"> Remember me</label> <a href="#"
-					class="float-right">Recuperar senha</a>
+					type="checkbox"> Remember me</label>
 			</div>
 			<input type="hidden" th:name="${_csrf.parameterName}"
 				th:value="${_csrf.token}" />
 		</form>
 		<p class="text-center">
-			<a href="#">Criar uma conta</a>
+			<a th:href="@{/cadastrar}">Criar uma conta</a>
 		</p>
 		<p class="mt-5 mb-3 text-muted text-center">Receitas GFT &copy;
 			2022</p>
