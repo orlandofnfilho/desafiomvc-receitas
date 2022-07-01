@@ -17,6 +17,12 @@
 				<div class="form-group mb-3">
 					<label for="nome">Nome da Receita:</label> <input
 						class="form-control" type="text" th:field="*{nome}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
+				</div>
+				<div class="form-group mb-3">
+					<label for="nome">Url da Imagem:</label> <input
+						class="form-control" type="text" th:field="*{urlImagem}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('urlImagem')}" th:errors="*{urlImagem}"></div>
 				</div>
 				<div class="form-group mb-3"></div>
 				<label for="tempoPreparo">Tempo de preparo:</label> <input
@@ -42,17 +48,17 @@
 							<td th:text="${item.unidadeMedida.nome}"></td>
 							<td><a class="btn btn-danger btn-sm"
 								th:href="@{/itens/delete(id=${item.id})}"
-								onclick="return confirm('Você realmente deseja excluir esse ingrediente?')" sec:authorize="hasAuthority('ADMIN')">Remover</a>
-							</td>
+								onclick="return confirm('Você realmente deseja excluir esse ingrediente?')"
+								sec:authorize="hasAuthority('ADMIN')">Remover</a></td>
 						</tr>
 					</tbody>
 				</table>
-				<a class="btn btn-primary btn-sm mb-3" th:href="@{/itens/new}" sec:authorize="hasAuthority('ADMIN')">Adicionar
-					Ingrediente</a>
+				<a class="btn btn-primary btn-sm mb-3" th:href="@{/itens/new}"
+					sec:authorize="hasAuthority('ADMIN')">Adicionar Ingrediente</a>
 				<!-- Modo Preparo -->
 				<div class="form-group">
 					<label for="modoPreparo">Modo de Preparo</label>
-					<textarea class="form-control" rows="3" th:field="*{modoPreparo}"></textarea>
+					<textarea class="form-control" rows="10" th:field="*{modoPreparo}"></textarea>
 				</div>
 				<button type="submit" class="btn btn-primary mt-2" id="salvar">Salvar
 					Receita</button>

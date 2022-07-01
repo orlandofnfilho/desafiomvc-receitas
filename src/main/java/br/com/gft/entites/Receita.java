@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,8 +35,12 @@ public class Receita implements Serializable {
 
 	@Min(value = 1, message = "O tempo minimo deve ser 1")
 	private Integer tempoPreparo;
+	
+	@Size(max = 10000)
+	@NotBlank(message = "Insira o link da foto")
+	private String urlImagem;
 
-	@Column(columnDefinition = "TEXT")
+	@Size(max = 10000)
 	private String modoPreparo;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "receita")

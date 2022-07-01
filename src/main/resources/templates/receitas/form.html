@@ -17,10 +17,16 @@
 				<div class="form-group mb-3">
 					<label for="nome">Nome da Receita:</label> <input
 						class="form-control" type="text" th:field="*{nome}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
 				</div>
-					<button type="submit" class="btn btn-primary mt-2" id="salvar">Salvar
-						Receita</button>
-						<a class="btn btn-primary mt-2" type="button"
+				<div class="form-group mb-3">
+					<label for="nome">Url da Imagem:</label> <input
+						class="form-control" type="text" th:field="*{urlImagem}" required></input>
+						<div class="text-danger" th:if="${#fields.hasErrors('urlImagem')}" th:errors="*{urlImagem}"></div>
+				</div>
+				<button type="submit" class="btn btn-primary mt-2" id="salvar">Salvar
+					Receita</button>
+				<a class="btn btn-primary mt-2" type="button"
 					href="javascript:history.back()">Voltar a página anterior</a>
 			</form>
 		</div>

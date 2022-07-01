@@ -46,7 +46,7 @@
 					<td th:text="${receita.nome}" width="40%"></td>
 					<td th:text="${receita.tempoPreparo}" width="30%"></td>
 					<td><a class="btn btn-primary btn-sm"
-						th:href="@{/receitas/edit(id=${receita.receitaId})}">Exibir</a> <a
+						th:href="@{/receitas/{id}(id=${receita.receitaId})}">Exibir</a> <a
 						class="btn btn-primary btn-sm"
 						th:href="@{/receitas/edit(id=${receita.receitaId})}"
 						sec:authorize="hasAuthority('ADMIN')">Editar</a> <a
