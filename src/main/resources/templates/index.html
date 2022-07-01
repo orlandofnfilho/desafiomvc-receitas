@@ -11,11 +11,64 @@
 
 	<div class="container">
 		<h1>Bem vindo ao Receitas GFT</h1>
-		<p>Esse é um projeto realizado durante o treinamento GFT Starter #4</p>
-		<p>Aqui você encontrará receitas, seus ingredientes, unidades de medidas e o passo de como fazê-las.</p>
-		<p>Espero que aproveite :)</p>
-		<a class="btn btn-primary btn-sm" th:href="@{/receitas}">Ir para listagem</a>
-		<a class="btn btn-primary btn-sm" th:href="@{/popular}" sec:authorize="hasAuthority('ADMIN')">Popular Banco</a>
+		<p>Esse é um projeto realizado durante o treinamento GFT Starter
+			#4</p>
+		<p>Aqui você encontrará receitas, seus ingredientes, unidades de
+			medidas e o passo de como fazê-las.</p>
+		<section id="gallery">
+			<div class="container mt-3">
+				<div class="row">
+					<div class="col-lg-4 mb-4">
+						<div class="card">
+							<img
+								src="https://ncultura.pt/wp-content/uploads/2022/06/Faca-arroz-de-tamboril-como-um-Chef-750x500.jpg"
+								alt="" class="card-img-top">
+							<div class="card-body">
+								<h5 class="card-title">Sunset</h5>
+								<p class="card-text">Lorem ipsum dolor sit amet consectetur,
+									adipisicing elit. Ut eum similique repellat a laborum, rerum
+									voluptates ipsam eos quo tempore iusto dolore modi dolorum in
+									pariatur. Incidunt repellendus praesentium quae!</p>
+								<a th:href="@{/receitas}" class="btn btn-outline-primary btn-sm">Ver todas</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 mb-4">
+						<div class="card">
+							<img
+								src="https://ncultura.pt/wp-content/uploads/2020/09/cover-final-4rfg.jpg"
+								alt="" class="card-img-top">
+							<div class="card-body">
+								<h5 class="card-title">Sunset</h5>
+								<p class="card-text">Lorem ipsum dolor sit amet consectetur,
+									adipisicing elit. Ut eum similique repellat a laborum, rerum
+									voluptates ipsam eos quo tempore iusto dolore modi dolorum in
+									pariatur. Incidunt repellendus praesentium quae!</p>
+								<a th:href="@{/receitas}" class="btn btn-outline-primary btn-sm">Ver todas</a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-4 mb-4">
+						<div class="card">
+							<img
+								src="https://ncultura.pt/wp-content/uploads/2022/06/Receita-de-Arroz-de-Marisco.-Que-petisco-750x500.jpg"
+								alt="" class="card-img-top">
+							<div class="card-body">
+								<h5 class="card-title">Sunset</h5>
+								<p class="card-text">Lorem ipsum dolor sit amet consectetur,
+									adipisicing elit. Ut eum similique repellat a laborum, rerum
+									voluptates ipsam eos quo tempore iusto dolore modi dolorum in
+									pariatur. Incidunt repellendus praesentium quae!</p>
+								<a th:href="@{/receitas}" class="btn btn-outline-primary btn-sm">Ver todas</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<a class="btn btn-primary btn-sm" th:href="@{/receitas}">Ir para
+				listagem</a> <a class="btn btn-primary btn-sm" th:href="@{/popular}"
+				sec:authorize="hasAuthority('ADMIN')">Popular Banco</a>
+		</section>
 	</div>
 </div>
 </html>
