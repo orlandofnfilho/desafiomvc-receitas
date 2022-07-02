@@ -61,6 +61,7 @@ public class IngredienteController {
 
 	}
 
+
 	@GetMapping("/edit")
 	public ModelAndView editIngrediente(@RequestParam Long id) {
 

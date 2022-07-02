@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.gft.entites.Usuario;
 import br.com.gft.repositories.UsuarioRepository;
+import br.com.gft.services.EmailService;
 
 @Controller
 @RequestMapping
@@ -22,6 +23,9 @@ public class UsuarioController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private EmailService emailService;
 
 	@GetMapping("/cadastrar")
 	public String cadastrar(Model model) {
@@ -38,6 +42,7 @@ public class UsuarioController {
 		}
 		usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
 		repository.save(usuario);
+		emailService.confirmReg(usuario);
 		model.addAttribute("message", "Usuário cadastrado");
 
 		return "/login";

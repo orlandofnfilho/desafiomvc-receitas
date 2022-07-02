@@ -15,7 +15,7 @@ public class IngredienteService {
 	@Autowired
 	private IngredienteRepository ingredienteRepository;
 
-	public Ingrediente insert(Ingrediente ingrediente) {
+	public Ingrediente insert(Ingrediente ingrediente){
 		return ingredienteRepository.save(ingrediente);
 	}
 
@@ -38,7 +38,7 @@ public class IngredienteService {
 	public List<Ingrediente> listByName(String nome) {
 		return ingredienteRepository.findByNomeContainingIgnoreCase(nome);
 	}
-	
+
 	public void delete(Long id) {
 		ingredienteRepository.deleteById(id);
 	}
