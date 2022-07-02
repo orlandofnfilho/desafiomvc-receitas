@@ -46,6 +46,7 @@ public class PopularBdService {
 			UnidadeMedida un4 = new UnidadeMedida(null, "À Gosto");
 			UnidadeMedida un5 = new UnidadeMedida(null, "Colher de Sopa");
 			UnidadeMedida un6 = new UnidadeMedida(null, "Unidade");
+			UnidadeMedida un7 = new UnidadeMedida(null, "Gramas");
 
 			listaUnidadeMedidas.add(un1);
 			listaUnidadeMedidas.add(un2);
@@ -53,6 +54,7 @@ public class PopularBdService {
 			listaUnidadeMedidas.add(un4);
 			listaUnidadeMedidas.add(un5);
 			listaUnidadeMedidas.add(un6);
+			listaUnidadeMedidas.add(un7);
 
 			List<UnidadeMedida> listaSalva = unidadeMedidaService.findAll(null);
 
@@ -75,16 +77,14 @@ public class PopularBdService {
 			Ingrediente in7 = new Ingrediente(null, "Creme de leite", null);
 			Ingrediente in8 = new Ingrediente(null, "Tomate grande cortado", null);
 			Ingrediente in9 = new Ingrediente(null, "Orégano", null);
+			Ingrediente in10 = new Ingrediente(null, "Açúcar", null);
+			Ingrediente in11 = new Ingrediente(null, "Chocolate em pó", null);
+			Ingrediente in12 = new Ingrediente(null, "Ovo inteiro", null);
+			Ingrediente in13 = new Ingrediente(null, "Coco ralado", null);
+			Ingrediente in14 = new Ingrediente(null, "Fermento em pó", null);
 
-			listaIngredientes.add(in1);
-			listaIngredientes.add(in2);
-			listaIngredientes.add(in3);
-			listaIngredientes.add(in4);
-			listaIngredientes.add(in5);
-			listaIngredientes.add(in6);
-			listaIngredientes.add(in7);
-			listaIngredientes.add(in8);
-			listaIngredientes.add(in9);
+			listaIngredientes
+					.addAll(Arrays.asList(in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12, in13, in14));
 
 			List<Ingrediente> listaSalva2 = IngredienteService.findAll(null);
 
@@ -102,7 +102,13 @@ public class PopularBdService {
 					"Unte um refratário com margarina. Forre o fundo com 6 fatias de pão de forma. Colocar metade do molho de tomate temperado, presunto, camada de requeijão, metade da mussarela, restante do pão de forma, molho de tomate, creme de leite, mussarela, tomate em rodelas, orégano. Leve o refratário ao forno até a mussarela derreter (fiz no micro-ondas)",
 					null);
 
+			Receita r2 = new Receita(null, "Bolo de chocolate no liquidificador", 60,
+					"https://img.itdg.com.br/tdg/images/recipes/000/041/549/326126/326126_original.jpg?mode=crop&width=710&height=400",
+					"Coloque no liquidificador todos os ingredientes e bata por 3 minutos. Unte a forma com margarina e polvilhe com chocolate em pó. Coloque a massa na forma. Asse em forno a 180°, pré-aquecido, por 40 minutos, ou até que furando com um palito, ele saia seco.",
+					null);
+
 			listaReceitas.add(r1);
+			listaReceitas.add(r2);
 
 			List<Receita> listaSalva3 = receitaService.findAll(null, null);
 
@@ -110,7 +116,10 @@ public class PopularBdService {
 				receitaService.saveAll(listaReceitas);
 			} else {
 				throw new Exception();
+
 			}
+
+			// Insert Itens
 
 			Item item1 = new Item(null, r1, in1, new BigDecimal("1"), un5);
 			Item item2 = new Item(null, r1, in2, new BigDecimal("12"), un1);
@@ -122,8 +131,15 @@ public class PopularBdService {
 			Item item8 = new Item(null, r1, in8, new BigDecimal("1"), un6);
 			Item item9 = new Item(null, r1, in9, new BigDecimal("0"), un4);
 
+			Item item10 = new Item(null, r2, in10, new BigDecimal("8"), un5);
+			Item item11 = new Item(null, r2, in11, new BigDecimal("8"), un5);
+			Item item12 = new Item(null, r2, in12, new BigDecimal("6"), un6);
+			Item item13 = new Item(null, r2, in13, new BigDecimal("100"), un7);
+			Item item14 = new Item(null, r2, in14, new BigDecimal("1"), un5);
+
 			List<Item> listaItem = new ArrayList<>();
-			listaItem.addAll(Arrays.asList(item1, item2, item3, item4, item5, item6, item7, item8, item9));
+			listaItem.addAll(Arrays.asList(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10,
+					item11, item12, item13, item14));
 
 			List<Item> listaSalva4 = itemService.findAll();
 
@@ -131,6 +147,7 @@ public class PopularBdService {
 				itemService.saveAll(listaItem);
 			} else {
 				throw new Exception();
+
 			}
 
 			Bdpopulado = true;
