@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.gft.entites.Item;
+import br.com.gft.entites.Receita;
 import br.com.gft.repositories.ItemRepository;
 
 @Service
@@ -35,6 +36,10 @@ public class ItemService {
 
 	public void delete(Long id) {
 		itemRepository.findById(id);
+	}
+	
+	public void saveAll(List<Item> list) {
+		itemRepository.saveAll(list);
 	}
 
 }

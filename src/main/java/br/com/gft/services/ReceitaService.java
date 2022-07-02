@@ -1,5 +1,6 @@
 package br.com.gft.services;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,5 +53,4 @@ public class ReceitaService {
 	public void saveAll(List<Receita> list) {
 		receitaRepository.saveAll(list);
 	}
-
 }

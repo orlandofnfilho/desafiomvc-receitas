@@ -32,7 +32,7 @@ public class Item implements Serializable {
 	@ManyToOne
 	private Ingrediente ingrediente;
 
-	@Digits(fraction = 2, integer = 10)
+	@Digits(fraction = 1, integer = 4)
 	private BigDecimal quantidade;
 
 	@ManyToOne
