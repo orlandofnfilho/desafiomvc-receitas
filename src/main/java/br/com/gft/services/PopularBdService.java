@@ -106,7 +106,7 @@ public class PopularBdService {
 
 			List<Receita> listaSalva3 = receitaService.findAll(null, null);
 
-			if (listaSalva2.isEmpty()) {
+			if (listaSalva3.isEmpty()) {
 				receitaService.saveAll(listaReceitas);
 			} else {
 				throw new Exception();
