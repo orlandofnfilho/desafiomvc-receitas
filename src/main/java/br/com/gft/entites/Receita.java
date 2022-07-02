@@ -36,11 +36,11 @@ public class Receita implements Serializable {
 	@Min(value = 1, message = "O tempo minimo deve ser 1")
 	private Integer tempoPreparo;
 	
-	@Size(max = 10000)
+	@Size(max = 5000)
 	@NotBlank(message = "Insira o link da foto")
 	private String urlImagem;
 
-	@Size(max = 10000)
+	@Size(max = 5000)
 	private String modoPreparo;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "receita")
